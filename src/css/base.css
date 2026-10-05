@@ -1,0 +1,264 @@
+/* ==========================================================================
+   Base — reset, typography, layout primitives, buttons, reveal
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* keyboard focus never lands flush against the nav or the screen edge: the ring stays whole */
+  scroll-padding-top: calc(var(--nav-h) + var(--s-4));
+  scroll-padding-bottom: var(--s-6);
+  background: var(--ink-900);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-stretch: var(--stretch-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;               /* clip, not hidden: keeps position:sticky working */
+}
+
+img, svg, canvas { display: block; max-width: 100%; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote, pre { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+[hidden] { display: none !important; }
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--r-1);
+}
+[tabindex="-1"]:focus-visible { outline: none; }
+::selection { background: rgb(var(--red-rgb) / 0.38); color: #fff; }
+
+/* thin, quiet scrollbars */
+html { scrollbar-color: var(--ink-500) var(--ink-950); scrollbar-width: thin; }
+
+/* ---------- accessibility helpers ---------- */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: fixed;
+  left: var(--s-4); top: var(--s-4);
+  z-index: 200;
+  padding: var(--s-3) var(--s-4);
+  background: var(--paper);
+  color: var(--ink-900);
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+.skip-link:focus { transform: none; }
+
+/* ---------- layout ---------- */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+}
+.section { position: relative; padding-block: var(--section-y); }
+
+/* ---------- type ---------- */
+.t-display {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  font-weight: 600;
+  font-stretch: var(--stretch-display);
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+.t-h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: 600;
+  font-stretch: var(--stretch-heading);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.t-h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: 600;
+  font-stretch: var(--stretch-heading);
+  letter-spacing: -0.01em;
+}
+.t-lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  color: var(--fg-muted);
+  text-wrap: pretty;
+}
+.t-body { color: var(--fg-muted); text-wrap: pretty; }
+.t-small { font-size: var(--fs-small); line-height: 1.55; color: var(--fg-muted); }
+.t-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  line-height: var(--lh-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  font-stretch: 100%;
+}
+.t-mono { font-family: var(--font-mono); font-stretch: 100%; }
+.measure { max-width: 34em; }
+.measure-narrow { max-width: 28em; }
+
+/* the signature motif: the three bars of the wordmark's "E" */
+.bars {
+  display: inline-block;
+  flex: none;
+  width: 14px; height: 12px;
+  background:
+    linear-gradient(var(--accent), var(--accent)) 0 0 / 100% 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) 0 5px / 100% 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) 0 10px / 100% 2px no-repeat;
+}
+
+/* "Q." label: the visitor's question; the heading beneath is our answer */
+.q-label {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  font-stretch: 100%;
+}
+.q-label .q-num { color: var(--fg); }
+@media (max-width: 599px) {
+  .q-label { gap: var(--s-2); font-size: 0.6875rem; letter-spacing: 0.1em; }
+  .q-label .q-sep { width: 12px; }
+}
+.q-label .q-sep { width: 20px; height: 1px; background: var(--line-strong); }
+
+/* ---------- buttons ----------
+   One cut corner (bottom-right, 30° rising to the right) — taken from the
+   lower facet of the mark. clip-path would swallow outlines and shadows, so
+   the glow and focus ring live on the .btn-shell wrapper. */
+.btn-shell {
+  display: inline-flex;
+  transition: filter var(--dur-2) var(--ease-out);
+}
+.btn-shell:hover { filter: drop-shadow(0 8px 26px rgb(var(--red-rgb) / 0.32)); }
+.btn-shell:has(.btn:focus-visible) { outline: 2px solid var(--focus); outline-offset: 4px; }
+.btn-shell--ghost:hover { filter: none; }
+
+.btn {
+  --h: 52px;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  min-height: var(--h);
+  padding: 0 var(--s-5) 0 var(--s-5);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  font-stretch: var(--stretch-ui);
+  letter-spacing: 0.005em;
+  line-height: 1;
+  color: var(--on-accent);
+  background: var(--accent-fill);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut-h)), calc(100% - var(--cut-w)) 100%, 0 100%);
+  transition: background var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:focus-visible { outline: none; box-shadow: inset 0 0 0 2px #fff; }
+.btn:hover { background: var(--red-500); }
+.btn:active { transform: translateY(1px); }
+.btn svg { width: 18px; height: 18px; flex: none; transition: transform var(--dur-2) var(--ease-out); }
+.btn:hover svg { transform: translateX(3px); }
+.btn--down:hover svg { transform: translateY(3px); }
+.btn--lg { --h: 58px; padding-inline: var(--s-6); font-size: 1.0625rem; }
+.btn--sm { --h: 44px; padding-inline: var(--s-4); font-size: 0.9375rem; }
+
+/* ghost: a hairline outline that follows the cut (double-layer trick) */
+.btn--ghost { color: var(--fg); background: var(--line-strong); }
+.btn--ghost::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background: var(--ghost-bg, var(--bg));
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut-h) + 0.42px), calc(100% - var(--cut-w) + 0.73px) 100%, 0 100%);
+  transition: background var(--dur-2) var(--ease-out);
+}
+.btn--ghost:hover { background: var(--fg-muted); }
+.btn--ghost:hover::before { background: var(--ghost-bg-hover, var(--bg-raised)); }
+
+/* text link with arrow */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-weight: 600;
+  font-stretch: var(--stretch-ui);
+  color: var(--fg);
+  padding-block: var(--s-2);
+  border-bottom: 1px solid var(--line-strong);
+  transition: border-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out);
+}
+.link-arrow svg { width: 16px; height: 16px; transition: transform var(--dur-2) var(--ease-out); }
+.link-arrow:hover { border-color: var(--accent-text); }
+.link-arrow:hover svg { transform: translateX(3px); }
+.link-arrow--down:hover svg { transform: translateY(3px); }
+
+/* ---------- reveal on scroll (only when JS is running) ---------- */
+.js [data-reveal] {
+  transition: opacity var(--dur-3) var(--ease-out), transform var(--dur-3) var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+/* Nothing is hidden at rest. reveal.js tucks blocks that are still below the fold away
+   once the visitor starts scrolling, then lets them arrive. A still frame, a screenshot
+   or a failed script therefore always shows the whole page. */
+.js [data-reveal].is-pending { opacity: 0; transform: translateY(16px); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js [data-reveal].is-pending { opacity: 1; transform: none; }
+}
+
+/* printing or saving as PDF: show everything */
+@media print {
+  .js [data-reveal].is-pending { opacity: 1 !important; transform: none !important; }
+  .nav, .skip-link { display: none !important; }
+}

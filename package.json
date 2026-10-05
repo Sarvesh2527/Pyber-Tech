@@ -1,0 +1,25 @@
+{
+  "name": "pyber-solution-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marketing site for Pyber Solution — affordable VAPT for startups and small businesses.",
+  "scripts": {
+    "build": "node build.mjs",
+    "qa:interact": "node qa/interact.mjs",
+    "qa:axe": "node qa/axe.mjs",
+    "qa:contrast": "node qa/contrast.mjs",
+    "qa:keys": "node qa/keys.mjs",
+    "qa:overflow": "node qa/overflow.mjs",
+    "qa:targets": "node qa/targets.mjs",
+    "qa:reveal": "node qa/reveal.mjs",
+    "qa:nojs": "node qa/nojs.mjs",
+    "qa:motion": "node qa/reduced.mjs",
+    "qa:shots": "node qa/qa.mjs"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "axe-core": "^4.13.0",
+    "esbuild": "^0.28.2",
+    "puppeteer-core": "^25.12.0"
+  }
+}

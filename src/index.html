@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pyber Solution — Security testing (VAPT) for startups and small businesses</title>
+<meta name="description" content="Pyber Solution runs professional vulnerability assessments and penetration testing for startups and small businesses. Plain-English reports, priced for smaller teams.">
+<meta name="theme-color" content="#0A0C0F">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pyber Solution">
+<meta property="og:title" content="Pyber Solution — See what an attacker would see.">
+<meta property="og:description" content="Professional security testing (VAPT) for startups and small businesses, explained in plain English.">
+<!-- TODO(domain): once the live address is final, add the three tags below (absolute URLs only):
+     <link rel="canonical" href="https://YOUR-DOMAIN/">
+     <meta property="og:url" content="https://YOUR-DOMAIN/">
+     <meta property="og:image" content="https://YOUR-DOMAIN/assets/og.png">   (1200 x 630) -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/icon-32.png">
+<link rel="apple-touch-icon" href="assets/logo/icon-180.png">
+<!-- dev-only:start -->
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/hubot-sans-var.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/geist-mono-var.woff2" crossorigin>
+<!-- dev-only:end -->
+<!-- inject:css -->
+<script>document.documentElement.classList.add("js")</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Pyber Solution","description":"Vulnerability assessment and penetration testing (VAPT) for startups and small businesses.","email":"techpyber@gmail.com","serviceType":"Vulnerability assessment and penetration testing"}</script>
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4v15M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><path d="M9 9h10v10H9zM5 15V5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-web" viewBox="0 0 24 24"><path d="M3 5h18v10.5L15 19H3zM3 9.5h18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-webapp" viewBox="0 0 24 24"><path d="M3 5h18v10.5L15 19H3zM9 5v14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-api" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-mobile" viewBox="0 0 24 24"><path d="M7 3h10v18H7zM11 18h2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .8-7.9A5.5 5.5 0 0 0 7.2 9 4.5 4.5 0 0 0 7 18z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"/></symbol>
+    <symbol id="i-network" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="4.5" width="5" height="5"/><rect x="15.5" y="4.5" width="5" height="5"/><rect x="9.5" y="15.5" width="5" height="5"/><path d="M8.5 7h7M6 9.5l4.5 6M18 9.5l-4.5 6" stroke-linecap="square"/></g></symbol>
+    <symbol id="i-unsure" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM9.6 9.4a2.4 2.4 0 1 1 4.8 0c0 1.8-2.4 1.9-2.4 3.8M12 16.6v.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a class="brand" href="#top" aria-label="Pyber Solution — back to top">
+      <img class="brand__mark" src="assets/logo/mark-reversed.webp" width="272" height="321" alt="">
+      <span class="brand__word">
+        <img class="brand__pyber" src="assets/logo/wordmark-pyber-reversed.webp" width="514" height="82" alt="">
+        <span class="brand__sub" aria-hidden="true">Solution</span>
+      </span>
+    </a>
+
+    <p class="nav__chapter" aria-hidden="true">
+      <span class="bars"></span>
+      <span class="nav__q-num" data-nav-num>01</span>
+      <span class="q-sep"></span>
+      <span class="nav__q-text" data-nav-text>What is this?</span>
+    </p>
+
+    <div class="nav__actions">
+      <button class="nav__index" type="button" aria-haspopup="dialog" data-open-index>
+        <span class="nav__index-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="nav__index-text">Questions</span>
+      </button>
+      <span class="btn-shell"><a class="btn btn--sm" href="#start" data-cta>Get a quote</a></span>
+    </div>
+  </div>
+  <div class="nav__progress" aria-hidden="true"><span data-progress></span></div>
+</header>
+
+<main id="main">
+
+<!-- ============================ STORY (hero + scroll-driven scene) ============================ -->
+<section class="story" id="story" aria-label="Introduction">
+  <div class="story__wrap container">
+
+    <div class="story__steps">
+
+      <article class="step step--hero" id="top" data-step="0" data-q="01" data-qtext="What is this?">
+        <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">01</span><span class="q-sep" aria-hidden="true"></span><span>What is this?</span></p>
+        <h1 class="t-display">See what an attacker would see.</h1>
+        <p class="t-lead measure">Pyber Solution finds the weak points in your website, apps and cloud setup, then explains them in plain English. Professional security testing, priced for startups and small businesses.</p>
+        <div class="step__cta">
+          <span class="btn-shell"><a class="btn btn--lg" href="#start" data-cta>Get a security assessment <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a></span>
+          <a class="link-arrow link-arrow--down" href="#step-1" data-scroll>See how it works <svg aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+        </div>
+        <p class="step__meta t-label"><span>VAPT</span><span class="dot" aria-hidden="true"></span><span>Vulnerability Assessment &amp; Penetration Testing</span></p>
+        <p class="step__mail t-small">Prefer email? <a class="inline-link" href="mailto:techpyber@gmail.com">techpyber@gmail.com</a></p>
+      </article>
+
+      <article class="step" id="step-1" data-step="1" data-q="02" data-qtext="Why should I care?">
+        <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">02</span><span class="q-sep" aria-hidden="true"></span><span>Why should I care?</span></p>
+        <h2 class="t-h2">Size doesn’t make you invisible.</h2>
+        <p class="t-lead measure">Automated tools sweep the internet all day, looking for known weak spots. They don’t check how big you are first. If your website, logins or app are online, they’re in range.</p>
+      </article>
+
+      <article class="step" id="step-2" data-step="2" data-q="03" data-qtext="Could we actually be exposed?">
+        <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">03</span><span class="q-sep" aria-hidden="true"></span><span>Could we actually be exposed?</span></p>
+        <h2 class="t-h2">Most weak points can’t be seen from the inside.</h2>
+        <p class="t-lead measure">Your website is the part you can see. Behind it sit logins, APIs, cloud storage and the odd forgotten test server. Small teams rarely have time to check every corner, and that’s perfectly normal.</p>
+      </article>
+
+      <article class="step" id="step-3" data-step="3" data-q="04" data-qtext="What do you actually do?">
+        <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">04</span><span class="q-sep" aria-hidden="true"></span><span>What do you actually do?</span></p>
+        <h2 class="t-h2">We look the way an attacker would, with your permission.</h2>
+        <p class="t-lead measure">That’s VAPT. A vulnerability assessment finds known weaknesses across your surface. A penetration test then tries them, carefully and inside the agreed scope, to show what they would really allow.</p>
+      </article>
+
+      <article class="step" id="step-4" data-step="4" data-q="05" data-qtext="What does a real problem look like?">
+        <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">05</span><span class="q-sep" aria-hidden="true"></span><span>What does a real problem look like?</span></p>
+        <h2 class="t-h2">Small gaps can line up into one big one.</h2>
+        <p class="t-lead measure">An admin page open to the whole internet. A password reset that can be guessed. An API that hands back another customer’s records. A storage folder left public. Alone, each can look minor. Together, they form a path, and finding it is what testing is for.</p>
+      </article>
+
+      <article class="step step--last" id="step-5" data-step="5" data-q="06" data-qtext="Then what?">
+        <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">06</span><span class="q-sep" aria-hidden="true"></span><span>Then what?</span></p>
+        <h2 class="t-h2">Then it’s a short list, in order of priority.</h2>
+        <p class="t-lead measure">No scare tactics and no hundred-page dump. You get what matters most first, what it means for your business, and how to fix it. Fix it, and the path closes.</p>
+        <a class="link-arrow link-arrow--down" href="#explorer" data-scroll>Now let’s look at yours <svg aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+      </article>
+
+    </div>
+
+    <div class="story__stage" aria-hidden="true">
+      <div class="stage" id="stage">
+        <div class="stage__top">
+          <span class="t-label stage__note"><span>Illustrative model</span><i class="dot" aria-hidden="true"></i><span>not a real company</span></span>
+          <span class="t-label stage__state"><i class="stage__pulse"></i><span data-stage-state>Observing</span></span>
+        </div>
+        <svg class="stage__svg" id="stage-svg" xmlns="http://www.w3.org/2000/svg" role="presentation" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="stage__foot">
+          <ul class="stage__legend t-label">
+            <li><i class="key key--asset"></i>Asset</li>
+            <li><i class="key key--checked"></i>Checked</li>
+            <li><i class="key key--finding"></i>Finding</li>
+          </ul>
+          <p class="stage__count t-label"><span data-count="checked">0</span>/<span data-count="total">0</span> checked <i class="dot"></i> <span data-count="findings">0</span> findings</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ EXPLORER ============================ -->
+<section class="section explorer" id="explorer" aria-labelledby="explorer-h" data-q="07" data-qtext="What would you check for us?">
+  <div class="container">
+    <header class="chapter-head" data-reveal>
+      <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">07</span><span class="q-sep" aria-hidden="true"></span><span>What would you check for us?</span></p>
+      <h2 class="t-h2" id="explorer-h">Tell us what you run. We’ll show what we’d look at.</h2>
+      <p class="t-lead measure">Pick everything that applies. Not sure what you have? Choose that one and we’ll help you map it.</p>
+    </header>
+    <div class="explorer__body" data-explorer>
+      <noscript><p class="t-body">We test websites, web apps, APIs, mobile apps, cloud setups and networks. Email <a class="inline-link" href="mailto:techpyber@gmail.com">techpyber@gmail.com</a> with what you run.</p></noscript>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ METHOD ============================ -->
+<section class="section method" id="method" aria-labelledby="method-h" data-q="08" data-qtext="How does it work, and what’s my part?">
+  <div class="container method__grid">
+    <header class="chapter-head method__head" data-reveal>
+      <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">08</span><span class="q-sep" aria-hidden="true"></span><span>How does it work, and what’s my part?</span></p>
+      <h2 class="t-h2" id="method-h">Three steps. Your part is spelled out in each.</h2>
+      <p class="t-lead measure-narrow">We keep it simple, and we tell you exactly what we need from you at every stage.</p>
+    </header>
+
+    <ol class="phases" data-phases>
+      <li class="phase is-open" data-phase="1">
+        <div class="phase__bar" aria-hidden="true"><span></span></div>
+        <h3 class="phase__head">
+          <button class="phase__toggle" type="button" aria-expanded="true" aria-controls="phase-1-body">
+            <span class="phase__num t-label">01</span>
+            <span class="phase__text"><span class="phase__title t-h3">Scope</span><span class="phase__sum">We agree what to test, what’s off-limits and when.</span></span>
+            <svg class="phase__chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+          </button>
+        </h3>
+        <div class="phase__body" id="phase-1-body">
+          <div class="phase__inner">
+            <div class="phase__col"><p class="t-label">Your part</p><p>Tell us what you run, and give written permission for us to test it.</p></div>
+            <div class="phase__col"><p class="t-label">Our part</p><p>We confirm scope, timing and ground rules in writing, and send a quote before any work begins.</p></div>
+          </div>
+        </div>
+      </li>
+      <li class="phase" data-phase="2">
+        <div class="phase__bar" aria-hidden="true"><span></span></div>
+        <h3 class="phase__head">
+          <button class="phase__toggle" type="button" aria-expanded="false" aria-controls="phase-2-body">
+            <span class="phase__num t-label">02</span>
+            <span class="phase__text"><span class="phase__title t-h3">Test</span><span class="phase__sum">We assess the surface, then carefully try what we find.</span></span>
+            <svg class="phase__chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+          </button>
+        </h3>
+        <div class="phase__body" id="phase-2-body">
+          <div class="phase__inner">
+            <div class="phase__col"><p class="t-label">Your part</p><p>Carry on as normal. We’ll only reach out if we need something, such as a test account.</p></div>
+            <div class="phase__col"><p class="t-label">Our part</p><p>We scan for known weaknesses, then test the promising ones by hand, staying inside the agreed scope and window.</p></div>
+          </div>
+        </div>
+      </li>
+      <li class="phase" data-phase="3">
+        <div class="phase__bar" aria-hidden="true"><span></span></div>
+        <h3 class="phase__head">
+          <button class="phase__toggle" type="button" aria-expanded="false" aria-controls="phase-3-body">
+            <span class="phase__num t-label">03</span>
+            <span class="phase__text"><span class="phase__title t-h3">Report</span><span class="phase__sum">You get a plain-language list, in order of priority.</span></span>
+            <svg class="phase__chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+          </button>
+        </h3>
+        <div class="phase__body" id="phase-3-body">
+          <div class="phase__inner">
+            <div class="phase__col"><p class="t-label">Your part</p><p>Read the summary. We’ll walk you through it and answer questions.</p></div>
+            <div class="phase__col"><p class="t-label">Our part</p><p>We write up every finding with evidence, what it means for your business, and how to fix it.</p></div>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================ REPORT ============================ -->
+<section class="section report" id="report" aria-labelledby="report-h" data-q="09" data-qtext="What do I receive?">
+  <div class="container report__grid">
+    <div class="report__intro" data-reveal>
+      <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">09</span><span class="q-sep" aria-hidden="true"></span><span>What do I receive?</span></p>
+      <h2 class="t-h2" id="report-h">A report your whole team can read.</h2>
+      <p class="t-lead measure-narrow">Every finding is explained twice: once for whoever runs the business, once for whoever fixes it. Flip the switch to see both.</p>
+      <ul class="includes">
+        <li><span class="includes__n t-label">A</span><span>A short summary written for owners</span></li>
+        <li><span class="includes__n t-label">B</span><span>Findings ranked by priority</span></li>
+        <li><span class="includes__n t-label">C</span><span>Fix guidance your developers can act on</span></li>
+        <li><span class="includes__n t-label">D</span><span>A walkthrough call to go through it together</span></li>
+      </ul>
+    </div>
+
+    <figure class="finding cut-panel" data-finding data-reveal style="--d:120ms">
+      <div class="finding__bar">
+        <p class="t-label finding__tag">Illustrative example <i class="dot" aria-hidden="true"></i> not a real client</p>
+        <div class="seg" role="group" aria-label="Explanation style">
+          <button type="button" class="seg__btn" data-view="plain" aria-pressed="true">Plain English</button>
+          <button type="button" class="seg__btn" data-view="tech" aria-pressed="false">Technical</button>
+        </div>
+      </div>
+      <div class="finding__body">
+       <div class="finding__panes" data-panes>
+
+        <div class="finding__view is-active" data-pane="plain">
+          <p class="sev"><span class="sev__chip">High</span><span class="t-label">Priority 1 of 4 in this example</span></p>
+          <h3 class="finding__title">Customers can see each other’s invoices.</h3>
+          <dl class="finding__facts">
+            <div><dt class="t-label">What this means</dt><dd>If someone logs in to their own account and changes a number in the web address, they can open another customer’s invoice. No special skills or tools needed.</dd></div>
+            <div><dt class="t-label">Why it matters</dt><dd>Billing details could be seen by people who should never see them. That can damage customer trust and, depending on the data, create privacy obligations.</dd></div>
+            <div><dt class="t-label">How to fix it</dt><dd>
+              <ol class="steps-list">
+                <li>Check that the logged-in customer owns an invoice before showing it.</li>
+                <li>Make invoice numbers hard to guess, as an extra layer.</li>
+                <li>Add an automatic test so this can’t quietly return.</li>
+              </ol></dd></div>
+          </dl>
+        </div>
+
+        <div class="finding__view" data-pane="tech" aria-hidden="true">
+          <p class="sev"><span class="sev__chip">High</span><span class="t-label">CWE-639 <i class="dot" aria-hidden="true"></i> OWASP API Security Top 10 (2023) API1</span></p>
+          <h3 class="finding__title finding__title--tech">Broken object-level authorization on <code>GET /api/v1/invoices/{id}</code></h3>
+          <dl class="finding__facts">
+            <div><dt class="t-label">Evidence</dt><dd>
+<pre class="code" tabindex="0" aria-label="Example request and response"><span class="c-dim"># token subject: user 5120</span>
+GET /api/v1/invoices/1042 HTTP/1.1
+Host: app.example.com
+Authorization: Bearer &lt;token for user 5120&gt;
+
+HTTP/1.1 <span class="c-hot">200 OK</span>
+{ "id": 1042, "owner_id": <span class="c-hot">7781</span>, … }
+<span class="c-dim"># expected: 403 Forbidden</span></pre></dd></div>
+            <div><dt class="t-label">Cause</dt><dd>The endpoint authenticates the caller but never checks that the requested object belongs to them.</dd></div>
+            <div><dt class="t-label">Remediation</dt><dd>Enforce an ownership check server-side on every object access, deny by default, and add a regression test covering cross-account reads.</dd></div>
+          </dl>
+        </div>
+
+       </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ TRUST ============================ -->
+<section class="section trust" id="trust" aria-labelledby="trust-h" data-q="10" data-qtext="Can I trust you?">
+  <div class="container trust__grid">
+    <header class="chapter-head trust__head" data-reveal>
+      <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">10</span><span class="q-sep" aria-hidden="true"></span><span>Can I trust you?</span></p>
+      <h2 class="t-h2" id="trust-h">How we work, in writing.</h2>
+      <p class="t-lead measure-narrow">Trust is earned, so instead of badges, here is exactly how we behave. Hold us to it.</p>
+    </header>
+
+    <ol class="principles">
+      <li class="principle" data-reveal>
+        <span class="principle__n t-label">01</span>
+        <h3 class="t-h3">Only with your written permission</h3>
+        <p>We test what you’ve authorized, inside the window we agree. Nothing else.</p>
+      </li>
+      <li class="principle" data-reveal style="--d:60ms">
+        <span class="principle__n t-label">02</span>
+        <h3 class="t-h3">No surprises</h3>
+        <p>Anything risky is discussed first. If something looks unstable, we stop and tell you.</p>
+      </li>
+      <li class="principle" data-reveal style="--d:120ms">
+        <span class="principle__n t-label">03</span>
+        <h3 class="t-h3">Honest severity</h3>
+        <p>If it’s minor, we say it’s minor. We don’t inflate findings to look impressive.</p>
+      </li>
+      <li class="principle" data-reveal style="--d:180ms">
+        <span class="principle__n t-label">04</span>
+        <h3 class="t-h3">Your data stays yours</h3>
+        <p>What we see while testing is treated as confidential and kept only as long as the report needs it.</p>
+      </li>
+      <li class="principle" data-reveal style="--d:240ms">
+        <span class="principle__n t-label">05</span>
+        <h3 class="t-h3">Plain words, always</h3>
+        <p>Every finding comes with an explanation a non-engineer can follow.</p>
+      </li>
+    </ol>
+
+    <aside class="placeholder" data-placeholder data-reveal aria-label="Placeholder for team and credentials">
+      <p class="t-label"><span class="placeholder__tag">Placeholder</span> Team &amp; credentials</p>
+      <p class="t-small">Add real names, relevant experience and only the certifications you actually hold. Nothing is claimed here until you do.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============================ START (light finale) ============================ -->
+<section class="section start" id="start" data-surface="paper" aria-labelledby="start-h" data-q="11" data-qtext="How do I start?">
+  <div class="start__art" aria-hidden="true"><i class="arc arc--a"></i><i class="arc arc--b"></i></div>
+  <div class="container start__grid">
+    <header class="start__intro" data-reveal>
+      <p class="q-label"><span class="bars" aria-hidden="true"></span><span class="q-num">11</span><span class="q-sep" aria-hidden="true"></span><span>How do I start?</span></p>
+      <h2 class="t-h2" id="start-h">Tell us what you run. We’ll reply with a quote.</h2>
+      <p class="t-lead measure-narrow">There’s no form to submit. Build a short brief and it opens as an email to <a class="inline-link" href="mailto:techpyber@gmail.com">techpyber@gmail.com</a>, ready for you to edit and send.</p>
+      <ul class="assurances">
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Nothing leaves this page until you press send in your own email.</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Edit anything before you send it.</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>A person reads it and replies.</li>
+      </ul>
+    </header>
+
+    <div class="brief cut-panel" data-brief data-reveal style="--d:120ms">
+      <noscript><div class="brief__nojs"><p class="t-body">Email <a class="inline-link" href="mailto:techpyber@gmail.com?subject=Security%20assessment%20enquiry">techpyber@gmail.com</a> with what you’d like tested and we’ll reply with a quote.</p><span class="btn-shell"><a class="btn btn--lg" href="mailto:techpyber@gmail.com?subject=Security%20assessment%20enquiry">Email us</a></span></div></noscript>
+    </div>
+  </div>
+
+  <footer class="footer container">
+    <div class="footer__row">
+      <a class="brand brand--footer" href="#top" aria-label="Pyber Solution — back to top">
+        <img class="brand__mark" src="assets/logo/mark.webp" width="272" height="321" alt="">
+        <span class="brand__word">
+          <img class="brand__pyber" src="assets/logo/wordmark-pyber.webp" width="514" height="82" alt="">
+          <span class="brand__sub" aria-hidden="true">Solution</span>
+        </span>
+      </a>
+      <ul class="footer__links">
+        <li><a class="inline-link" href="mailto:techpyber@gmail.com">techpyber@gmail.com</a></li>
+        <li><a class="inline-link" href="#top">Back to top</a></li>
+      </ul>
+    </div>
+    <p class="footer__fine t-small">© 2026 Pyber Solution. This site sets no cookies and loads no third-party trackers. Example scenes and findings are illustrations, not real clients or incidents.</p>
+  </footer>
+</section>
+
+</main>
+
+<!-- ============================ QUESTION INDEX ============================ -->
+<dialog class="index" id="index-dialog" aria-labelledby="index-title">
+  <div class="index__panel">
+    <div class="index__head">
+      <h2 class="t-label" id="index-title"><span class="bars" aria-hidden="true"></span>The conversation, in order</h2>
+      <button class="index__close" type="button" aria-label="Close" data-close-index><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <ol class="index__list" data-index-list></ol>
+    <div class="index__foot"><span class="btn-shell"><a class="btn" href="#start" data-cta data-close-index>Get a security assessment <svg aria-hidden="true"><use href="#i-arrow-right"/></svg></a></span></div>
+  </div>
+</dialog>
+
+<!-- inject:js -->
+</body>
+</html>
