@@ -90,6 +90,8 @@ let site = template
   .replace('<!-- inject:js -->', () => '<script src="assets/app.js" defer></script>');
 await fs.writeFile(path.join(SITE, 'index.html'), site);
 await fs.writeFile(path.join(SITE, 'assets/app.js'), js);
+await fs.cp(path.join(ROOT, 'robots.txt'), path.join(SITE, 'robots.txt'));
+await fs.cp(path.join(ROOT, 'sitemap.xml'), path.join(SITE, 'sitemap.xml'));
 await fs.cp(path.join(SRC, 'assets/logo'), path.join(SITE, 'assets/logo'), { recursive: true });
 // the fonts are SIL OFL 1.1: ship their licences next to them
 for (const f of await fs.readdir(path.join(SRC, 'assets/fonts'))) {
